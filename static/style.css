@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #f4f6f8;
+  color: #111;
+}
+
+.chat-container {
+  width: 420px;
+  max-width: 95%;
+  height: 650px;
+  margin: 30px auto;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h2 { margin: 0; font-size: 16px; }
+header .admin-link { font-size: 13px; color: #0d6efd; text-decoration:none; }
+
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+#theme-toggle:hover {
+  background: rgba(201, 184, 184, 0.05);
+}
+
+.chat-box {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(#fff,#fafafa);
+}
+
+.message {
+  max-width: 82%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  word-wrap: break-word;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+}
+
+.user { margin-left: auto; background: #d1e7dd; align-self: flex-end; }
+.bot { margin-right: auto; background: #eef2ff; align-self: flex-start; white-space: pre-wrap; }
+
+.typing {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #f1f1f1;
+  color: #666;
+}
+
+.input-area {
+  display: flex;
+  padding: 12px;
+  gap: 8px;
+  border-top: 1px solid #eee;
+}
+
+#user-input { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #ddd; outline: none; }
+#send-btn { padding: 10px 14px; border: none; border-radius: 8px; background: #0d6efd; color: #fff; cursor: pointer; }
+
+small { color: #888; }
+
+#send-btn {
+  background-color: #007bff; /* Blue */
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Disabled state */
+#send-btn:disabled {
+  background-color: #a0a0a0;  /* Gray */
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* 🌙 DARK MODE (applied when you add `.dark-mode` to <html> or <body>) */
+.dark-mode body {
+  background: #0b0f14;
+  color: #e8edf2;
+}
+
+.dark-mode .chat-container {
+  background: #111720;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.dark-mode header {
+  border-bottom: 1px solid #22303e;
+}
+
+.dark-mode header h2 { color: #e8edf2; }
+.dark-mode header .admin-link { color: #4da3ff; }
+.dark-mode #theme-toggle {
+  color: #e8edf2; /* White-ish text in dark mode */
+}
+.dark-mode #theme-toggle:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.dark-mode .chat-box {
+  background: linear-gradient(#111720,#0b0f14);
+}
+
+.dark-mode .message {
+  box-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+
+.dark-mode .user {
+  background: #1a3d2d;
+  color: #d4f5e0;
+}
+
+.dark-mode .bot {
+  background: #1a1f35;
+  color: #e0e4ff;
+}
+
+.dark-mode .typing {
+  background: #222832;
+  color: #aaa;
+}
+
+.dark-mode .input-area {
+  border-top: 1px solid #22303e;
+}
+
+.dark-mode #user-input {
+  background: #1b2029;
+  border: 1px solid #333b47;
+  color: #e8edf2;
+}
+
+.dark-mode #send-btn {
+  background-color: #4da3ff;
+}
+
+.dark-mode #send-btn:disabled {
+  background-color: #555;
+  opacity: 0.5;
+}
+
+.dark-mode small {
+  color: #9aa6b2;
+}

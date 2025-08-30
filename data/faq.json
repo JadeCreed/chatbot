@@ -1,0 +1,22 @@
+[
+  {
+    "question": "How do I add a shop location?",
+    "answer": "Go to the dashboard → Add Shop. Enter shop name and full address, then click Save. The map will automatically render the location using the address."
+  },
+  {
+    "question": "How do I update a shop's address?",
+    "answer": "Open the shop's detail page, click Edit, change the address field, then Save. The map will update automatically."
+  },
+  {
+    "question": "How can users search for shops by address?",
+    "answer": "Use the search field in the map view. Type an address or shop name; matching shops will appear and the map centers on the selected result."
+  },
+  {
+    "question": "What map providers does the system use?",
+    "answer": "This demo uses OpenStreetMap tiles via Leaflet, but you can configure other providers in settings."
+  },
+  {
+    "question": "How do I remove a shop?",
+    "answer": "Go to the shop list, click Delete on the shop you want to remove, confirm and the shop will be deleted and disappear from the map."
+  }
+]

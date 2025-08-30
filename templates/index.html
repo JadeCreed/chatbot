@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>System Chatbot</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="chat-container">
+    <header><h2>System Assistant</h2><a href="/admin" class="admin-link">Admin</a></header>
+    <button id="theme-toggle">🌙 Dark Mode</button>
+    <div id="chat-box" class="chat-box" aria-live="polite"></div>
+
+    <div class="input-area">
+      <input id="user-input" placeholder="Ask about the system (e.g. How to add a shop?)" />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+  <script>
+  const toggleBtn = document.getElementById("theme-toggle");
+
+  toggleBtn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark-mode");
+
+    if (document.documentElement.classList.contains("dark-mode")) {
+      toggleBtn.textContent = "☀️ Light Mode";
+      localStorage.setItem("theme", "dark");
+    } else {
+      toggleBtn.textContent = "🌙 Dark Mode";
+      localStorage.setItem("theme", "light");
+    }
+  });
+
+  // Load saved theme on refresh
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark-mode");
+    toggleBtn.textContent = "☀️ Light Mode";
+  }
+</script>
+</body>
+</html>

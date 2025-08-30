@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin - Pending Questions</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .pending { max-width: 900px; margin: 20px auto; }
+    .pending-item { padding:10px; border:1px solid #ddd; margin-bottom:8px; background:#fff; border-radius:6px; }
+    textarea { width: 100%; height: 80px; }
+  </style>
+</head>
+<body>
+  <div class="pending">
+    <h2>Pending Questions</h2>
+    <div id="pending-list">Loading...</div>
+    <p>Use "Generate" to auto-answer (requires OPENROUTER_KEY), or fill an answer and click Save.</p>
+    <p><a href="/">Back to chat</a></p>
+  </div>
+
+<script>
+async function loadPending(){
+  const res = await fetch("/api/pending");
+  const list = await res.json();
+  const container = document.getElementById("pending-list");
+  if (!list || list.length === 0){
+    container.innerHTML = "<p>No pending questions.</p>";
+    return;
+  }
+  container.innerHTML = "";
+  list.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "pending-item";
+    div.innerHTML = `<strong>Q:</strong> ${item.question}<br><small>${item.created_at||''}</small>
+      <div style="margin-top:8px">
+        <textarea placeholder="Write answer here"></textarea>
+        <div style="margin-top:6px">
+          <button class="save-btn">Save</button>
+          <button class="gen-btn">Generate (auto)</button>
+        </div>
+      </div>`;
+    const saveBtn = div.querySelector(".save-btn");
+    const genBtn = div.querySelector(".gen-btn");
+    const ta = div.querySelector("textarea");
+    saveBtn.onclick = async () => {
+      const ans = ta.value.trim();
+      if(!ans){ alert("Please type an answer."); return; }
+      await fetch("/api/answer", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({question: item.question, answer: ans})});
+      loadPending();
+    };
+    genBtn.onclick = async () => {
+      genBtn.disabled = true;
+      genBtn.innerText = "Generating...";
+      const r = await fetch("/api/generate", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({question: item.question})});
+      genBtn.disabled = false;
+      genBtn.innerText = "Generate (auto)";
+      const j = await r.json();
+      if (r.ok){
+        alert("Generated and saved.");
+        loadPending();
+      } else {
+        alert("Generation failed: " + (j.error || JSON.stringify(j)));
+      }
+    };
+    container.appendChild(div);
+  });
+}
+
+loadPending();
+</script>
+</body>
+</html>
