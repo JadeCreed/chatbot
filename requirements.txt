@@ -2,8 +2,6 @@ Flask
 gunicorn
 sentence-transformers
 torch
-scikit-learn
-scipy
 numpy
 requests
 python-dotenv
