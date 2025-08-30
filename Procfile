@@ -1,1 +1,1 @@
-git push origin main
+web: python app.py
