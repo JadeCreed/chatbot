@@ -123,7 +123,9 @@ def openrouter_generate(prompt):
 # Flask app routes
 # -------------------
 app = Flask(__name__, static_folder="static", template_folder="templates")
-
+@app.route("/ping")
+def ping():
+    return "pong"
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -218,5 +220,4 @@ def generate_for_pending():
     return jsonify({"answer": ai_answer})
 
 if __name__ == "__main__":
-    print("Starting Flask app on http://127.0.0.1:5000")
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
